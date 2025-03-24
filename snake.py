@@ -35,9 +35,9 @@ class snake:
         return temp
 
     def eating(self, x, y):
-        body1 = body(x, y, pygame.image.load("head_right.png").convert_alpha())
+        body1 = body(x, y, pygame.image.load("images/head_right.png").convert_alpha())
         self.tail.next = body1
-        self.tail.image =  pygame.transform.scale(pygame.image.load("head_right.png").convert_alpha(), (20, 20))
+        self.tail.image =  pygame.transform.scale(pygame.image.load("images/head_right.png").convert_alpha(), (20, 20))
         self.tail = self.tail.next
         """temp = self.organs
         while temp.next:
@@ -49,22 +49,22 @@ class snake:
         if direction == "left":
             x, y = self.organs.x - self.movement_speed, self.organs.y
             self.head.rect.topleft = (x, y)
-            self.head.image = pygame.image.load("head_left.png").convert_alpha()
+            self.head.image = pygame.image.load("images/head_left.png").convert_alpha()
             self.head.image = pygame.transform.scale(self.head.image, (self.head.size, self.head.size))
         if direction == "right":
             x, y = self.organs.x + self.movement_speed, self.organs.y
             self.head.rect.topleft = (x, y)
-            self.head.image = pygame.image.load("head_right.png").convert_alpha()
+            self.head.image = pygame.image.load("images/head_right.png").convert_alpha()
             self.head.image = pygame.transform.scale(self.head.image, (self.head.size, self.head.size))
         if direction == "up":
             x, y = self.organs.x, self.organs.y - self.movement_speed
             self.head.rect.topleft = (x, y)
-            self.head.image = pygame.image.load("head_strait.png").convert_alpha()
+            self.head.image = pygame.image.load("images/head_strait.png").convert_alpha()
             self.head.image = pygame.transform.scale(self.head.image, (self.head.size, self.head.size))
         if direction == "down":
             x, y = self.organs.x, self.organs.y + self.movement_speed
             self.head.rect.topleft = (x, y)
-            self.head.image = pygame.image.load("head_down.png").convert_alpha()
+            self.head.image = pygame.image.load("images/head_down.png").convert_alpha()
             self.head.image = pygame.transform.scale(self.head.image, (self.head.size, self.head.size))
 
         while temp is not None:
@@ -72,12 +72,12 @@ class snake:
             temp_y = temp.y
             if temp.y > y:
                 temp.direction = "down"
-                temp.image = pygame.image.load("body_up_down.png").convert_alpha()
+                temp.image = pygame.image.load("images/body_up_down.png").convert_alpha()
                 temp.image= pygame.transform.scale(temp.image,(20,20))
                 #self.rect.topleft = self.image.get_rect().topleft
             if temp.y < y:
                 temp.direction = "up"
-                temp.image = pygame.image.load("body_up_down.png").convert_alpha()
+                temp.image = pygame.image.load("images/body_up_down.png").convert_alpha()
                 temp.image= pygame.transform.scale(temp.image,(20,20))
                 #self.rect.topleft = self.image.get_rect().topleft
             temp.y = y
@@ -92,7 +92,7 @@ class food(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         self.size = 20
-        self.image = pygame.image.load("apple.png").convert_alpha()
+        self.image = pygame.image.load("images/apple.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, (self.size, self.size))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
@@ -146,7 +146,7 @@ def play_game():
     food_y = random.choice(range(1, hight - 19, 20))
     apple = food(food_x, food_y)
     screen.blit(apple.image, apple.rect)
-    image1 = pygame.image.load("head_right.png").convert_alpha()
+    image1 = pygame.image.load("images/head_right.png").convert_alpha()
     image1 = pygame.transform.scale(image1, (20, 20))
     body1 = body(101, 701, image1)
     snake = snake(body1)
